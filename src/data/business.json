@@ -1,0 +1,65 @@
+{
+  "activeUsers": {
+    "daily": {
+      "labels": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
+      "data": [4250, 4500, 4750, 5000, 5250, 6000, 5500],
+      "previousWeek": [4000, 4200, 4300, 4600, 4800, 5500, 5200],
+      "target": 5000
+    },
+    "monthly": {
+      "labels": ["Ene", "Feb", "Mar", "Abr", "May", "Jun"],
+      "data": [85000, 90000, 92500, 96000, 98000, 102000],
+      "target": 100000
+    }
+  },
+  "customerSatisfaction": {
+    "nps": {
+      "current": 72,
+      "previous": 68,
+      "target": 75,
+      "historical": [65, 67, 69, 70, 72, 72]
+    },
+    "csat": {
+      "current": 8.6,
+      "previous": 8.4,
+      "target": 9.0,
+      "historical": [8.2, 8.3, 8.4, 8.5, 8.6, 8.6]
+    }
+  },
+  "conversionRate": {
+    "labels": ["Página de Inicio", "Página de Producto", "Carrito", "Proceso de Pago", "Compra"],
+    "data": [100, 45, 30, 25, 20],
+    "previousMonth": [100, 40, 25, 20, 15],
+    "target": 25
+  },
+  "userRetention": {
+    "labels": ["Semana 1", "Semana 2", "Semana 3", "Semana 4", "Semana 5", "Semana 6", "Semana 7", "Semana 8"],
+    "data": [100, 85, 72, 64, 58, 54, 52, 50],
+    "target": 60
+  },
+  "sessionDuration": {
+    "average": 325,
+    "byPage": [
+      { "page": "Página Principal", "duration": 120 },
+      { "page": "Listado de Productos", "duration": 280 },
+      { "page": "Detalle de Producto", "duration": 350 },
+      { "page": "Carrito", "duration": 180 },
+      { "page": "Proceso de Pago", "duration": 420 }
+    ],
+    "byDevice": [
+      { "device": "Escritorio", "duration": 380 },
+      { "device": "Móvil", "duration": 280 },
+      { "device": "Tableta", "duration": 320 }
+    ],
+    "target": 300
+  },
+  "realTimeUsers": {
+    "data": [325, 342, 368, 395, 412, 425, 418, 402, 385, 370, 352, 340],
+    "timestamps": [
+      "2023-07-01T10:00:00Z", "2023-07-01T10:05:00Z", "2023-07-01T10:10:00Z", 
+      "2023-07-01T10:15:00Z", "2023-07-01T10:20:00Z", "2023-07-01T10:25:00Z",
+      "2023-07-01T10:30:00Z", "2023-07-01T10:35:00Z", "2023-07-01T10:40:00Z",
+      "2023-07-01T10:45:00Z", "2023-07-01T10:50:00Z", "2023-07-01T10:55:00Z"
+    ]
+  }
+} 
