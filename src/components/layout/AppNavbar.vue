@@ -1,7 +1,7 @@
 <template>
   <header class="navbar">
     <div class="navbar-left">
-      <button class="menu-toggle" @click="toggleSidebar">
+      <button class="menu-toggle" @click="toggleSidebar" aria-label="Toggle Sidebar">
         <i class="fas fa-bars"></i>
       </button>
       <h2 class="page-title">{{ pageTitle }}</h2>
@@ -96,15 +96,17 @@ export default {
     },
     toggleSidebar() {
       this.$emit('toggle-sidebar');
+      console.log('Toggle sidebar event emitted');
+    },
+    handleClickOutside(event) {
+      if (this.$refs.userDropdown && !this.$refs.userDropdown.contains(event.target)) {
+        this.isUserDropdownOpen = false;
+      }
     }
   },
   mounted() {
     // Close dropdown when clicking outside
-    document.addEventListener('click', (event) => {
-      if (this.$refs.userDropdown && !this.$refs.userDropdown.contains(event.target)) {
-        this.isUserDropdownOpen = false;
-      }
-    });
+    document.addEventListener('click', this.handleClickOutside);
   },
   beforeUnmount() {
     // Remove event listener
@@ -123,6 +125,8 @@ export default {
   background-color: #ffffff;
   border-bottom: 1px solid #e2e8f0;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 99;
 }
 
 .navbar-left {
@@ -333,7 +337,9 @@ export default {
 
 @media (max-width: 767px) {
   .menu-toggle {
-    display: block;
+    display: flex;
+    z-index: 101;
+    position: relative;
   }
   
   .navbar-search {

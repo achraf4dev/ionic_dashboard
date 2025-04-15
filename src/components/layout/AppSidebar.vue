@@ -6,6 +6,9 @@
         <img src="../../assets/logo.svg" alt="Logo" class="logo" />
       </div>
       <h1 class="app-name" v-if="!isCollapsed">Montserrat</h1>
+      <button class="close-sidebar-btn" @click="emitToggle" aria-label="Close Sidebar">
+        <i class="fas fa-times"></i>
+      </button>
     </div>
 
     <!-- Navigation Menu -->
@@ -84,9 +87,33 @@ export default {
       localStorage.setItem('sidebarCollapsed', JSON.stringify(this.isCollapsed));
       this.$emit('toggle-sidebar', this.isCollapsed);
     },
+    emitToggle() {
+      // For mobile close button, directly trigger a closing event
+      if (window.innerWidth <= 767) {
+        // Remove the visible class directly
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+          sidebar.classList.remove('visible');
+        }
+        // Emit an event to the parent so it can update its state
+        this.$emit('toggle-sidebar', this.isCollapsed);
+      } else {
+        // For desktop, use normal toggle behavior
+        this.toggleSidebar();
+      }
+    },
     navigate(route) {
       this.activeItem = route;
       this.$router.push(route);
+      
+      // Close sidebar on mobile after navigation
+      if (window.innerWidth <= 767) {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+          sidebar.classList.remove('visible');
+        }
+        this.$emit('toggle-sidebar', this.isCollapsed);
+      }
     },
     toggleUserDropdown() {
       // Implement user dropdown logic
@@ -270,13 +297,42 @@ export default {
   margin-top: 0.75rem;
 }
 
+.close-sidebar-btn {
+  display: none;
+  background-color: #334155;
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.close-sidebar-btn:hover {
+  background-color: #475569;
+  transform: scale(1.05);
+}
+
 @media (max-width: 767px) {
   .sidebar {
     transform: translateX(-100%);
+    z-index: 100;
   }
   
   .sidebar.visible {
     transform: translateX(0);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .close-sidebar-btn {
+    display: flex;
   }
   
   .sidebar.collapsed {

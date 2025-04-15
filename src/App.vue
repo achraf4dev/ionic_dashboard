@@ -1,11 +1,11 @@
 <template>
   <div class="app-container">
     <AppSidebar :userName="userName" @toggle-sidebar="handleSidebarToggle" ref="sidebar" />
+    <div class="sidebar-overlay" v-show="sidebarMobileVisible" @click="closeMobileSidebar"></div>
     <div class="main-content" :class="{ 'sidebar-collapsed': sidebarCollapsed }">
       <AppNavbar 
         :userName="userName" 
         :isSidebarCollapsed="sidebarCollapsed"
-        @toggle-menu="toggleMobileMenu" 
         @toggle-sidebar="toggleSidebarFromNavbar" />
       <main class="content-area">
         <router-view />
@@ -27,7 +27,8 @@ export default {
   data() {
     return {
       userName: 'Achraf Ibrahimi',
-      sidebarCollapsed: false
+      sidebarCollapsed: false,
+      sidebarMobileVisible: false
     };
   },
   created() {
@@ -36,23 +37,61 @@ export default {
     if (savedState !== null) {
       this.sidebarCollapsed = JSON.parse(savedState);
     }
+    
+    // Add resize event listener to handle responsive behavior
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeUnmount() {
+    // Remove resize event listener
+    window.removeEventListener('resize', this.handleResize);
   },
   methods: {
     handleSidebarToggle(collapsed) {
       this.sidebarCollapsed = collapsed;
+      
+      // On mobile, also update the mobile visibility state
+      if (window.innerWidth <= 767) {
+        this.sidebarMobileVisible = false;
+      }
+      
       // Save to localStorage
       localStorage.setItem('sidebarCollapsed', JSON.stringify(collapsed));
     },
     toggleMobileMenu() {
       // Toggle mobile menu visibility
+      this.sidebarMobileVisible = !this.sidebarMobileVisible;
       const sidebarEl = document.querySelector('.sidebar');
       if (sidebarEl) {
         sidebarEl.classList.toggle('visible');
       }
     },
+    closeMobileSidebar() {
+      this.sidebarMobileVisible = false;
+      const sidebarEl = document.querySelector('.sidebar');
+      if (sidebarEl) {
+        sidebarEl.classList.remove('visible');
+      }
+    },
     toggleSidebarFromNavbar() {
-      if (this.$refs.sidebar) {
-        this.$refs.sidebar.toggleSidebar();
+      // Check if we're on mobile
+      if (window.innerWidth <= 767) {
+        // Use mobile menu toggle for mobile devices
+        this.toggleMobileMenu();
+      } else {
+        // Use sidebar toggle for desktop
+        if (this.$refs.sidebar) {
+          this.$refs.sidebar.toggleSidebar();
+        }
+      }
+    },
+    handleResize() {
+      // Hide mobile sidebar when resizing to desktop
+      if (window.innerWidth > 767 && this.sidebarMobileVisible) {
+        this.sidebarMobileVisible = false;
+        const sidebarEl = document.querySelector('.sidebar');
+        if (sidebarEl) {
+          sidebarEl.classList.remove('visible');
+        }
       }
     }
   }
@@ -129,6 +168,10 @@ body {
     margin-left: 0;
     width: 100%;
   }
+  
+  .sidebar-overlay {
+    display: block;
+  }
 }
 
 /* Override Ionic default styles */
@@ -158,5 +201,16 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 95;
+  display: none;
 }
 </style>
