@@ -1,24 +1,30 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import HomePage from '../views/HomePage.vue'
+
+import Business from '@/views/Business.vue';
+import Technique from '@/views/Technique.vue';
+import KPIs from '@/views/KPIs.vue'; 
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
-    component: HomePage
-  },
-  {
-    path: '/technical',
-    name: 'TechnicalDashboard',
-    component: () => import('../views/technical/TechnicalDashboardView.vue')
+    redirect: '/business'
   },
   {
     path: '/business',
-    name: 'BusinessDashboard',
-    component: () => import('../views/business/BusinessDashboardView.vue')
+    name: 'Business',
+    component: Business
+  },
+  {
+    path: '/technique',
+    name: 'Technique',
+    component: Technique
+  },
+  {
+    path: '/kpis',
+    name: 'KPIs',
+    component: KPIs
   }
-  // Analytics, Projects, and Settings routes have been removed
 ]
 
 const router = createRouter({

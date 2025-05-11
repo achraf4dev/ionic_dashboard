@@ -1,216 +1,147 @@
 <template>
-  <div class="app-container">
-    <AppSidebar :userName="userName" @toggle-sidebar="handleSidebarToggle" ref="sidebar" />
-    <div class="sidebar-overlay" v-show="sidebarMobileVisible" @click="closeMobileSidebar"></div>
-    <div class="main-content" :class="{ 'sidebar-collapsed': sidebarCollapsed }">
-      <AppNavbar 
-        :userName="userName" 
-        :isSidebarCollapsed="sidebarCollapsed"
-        @toggle-sidebar="toggleSidebarFromNavbar" />
-      <main class="content-area">
-        <router-view />
-      </main>
+  <ion-app>
+    <Sidebar :collapsed="sidebarCollapsed" />
+    <div id="main-content" class="main-container" :class="{ 'sidebar-collapsed': sidebarCollapsed }">
+      <Navbar />
+      <ion-content class="main-content">
+        <router-view v-slot="{ Component }">
+          <keep-alive>
+            <component :is="Component" />
+          </keep-alive>
+        </router-view>
+      </ion-content>
     </div>
-  </div>
+  </ion-app>
 </template>
 
-<script>
-import AppSidebar from '@/components/layout/AppSidebar.vue';
-import AppNavbar from '@/components/layout/AppNavbar.vue';
+<script setup lang="ts">
+import { IonApp, IonContent } from '@ionic/vue';
+import { useIonRouter } from '@ionic/vue';
+import { onMounted, ref, provide, onBeforeUnmount } from 'vue';
+import { useRoute } from 'vue-router';
+import Navbar from './components/Navbar.vue';
+import Sidebar from './components/Sidebar.vue';
 
-export default {
-  name: 'App',
-  components: {
-    AppSidebar,
-    AppNavbar
-  },
-  data() {
-    return {
-      userName: 'Achraf Ibrahimi',
-      sidebarCollapsed: false,
-      sidebarMobileVisible: false
-    };
-  },
-  created() {
-    // Initialize sidebar collapsed state from localStorage on app load
-    const savedState = localStorage.getItem('sidebarCollapsed');
-    if (savedState !== null) {
-      this.sidebarCollapsed = JSON.parse(savedState);
-    }
-    
-    // Add resize event listener to handle responsive behavior
-    window.addEventListener('resize', this.handleResize);
-  },
-  beforeUnmount() {
-    // Remove resize event listener
-    window.removeEventListener('resize', this.handleResize);
-  },
-  methods: {
-    handleSidebarToggle(collapsed) {
-      this.sidebarCollapsed = collapsed;
-      
-      // On mobile, also update the mobile visibility state
-      if (window.innerWidth <= 767) {
-        this.sidebarMobileVisible = false;
-      }
-      
-      // Save to localStorage
-      localStorage.setItem('sidebarCollapsed', JSON.stringify(collapsed));
-    },
-    toggleMobileMenu() {
-      // Toggle mobile menu visibility
-      this.sidebarMobileVisible = !this.sidebarMobileVisible;
-      const sidebarEl = document.querySelector('.sidebar');
-      if (sidebarEl) {
-        sidebarEl.classList.toggle('visible');
-      }
-    },
-    closeMobileSidebar() {
-      this.sidebarMobileVisible = false;
-      const sidebarEl = document.querySelector('.sidebar');
-      if (sidebarEl) {
-        sidebarEl.classList.remove('visible');
-      }
-    },
-    toggleSidebarFromNavbar() {
-      // Check if we're on mobile
-      if (window.innerWidth <= 767) {
-        // Use mobile menu toggle for mobile devices
-        this.toggleMobileMenu();
-      } else {
-        // Use sidebar toggle for desktop
-        if (this.$refs.sidebar) {
-          this.$refs.sidebar.toggleSidebar();
-        }
-      }
-    },
-    handleResize() {
-      // Hide mobile sidebar when resizing to desktop
-      if (window.innerWidth > 767 && this.sidebarMobileVisible) {
-        this.sidebarMobileVisible = false;
-        const sidebarEl = document.querySelector('.sidebar');
-        if (sidebarEl) {
-          sidebarEl.classList.remove('visible');
-        }
-      }
-    }
+const ionRouter = useIonRouter();
+const route = useRoute();
+const sidebarCollapsed = ref(false);
+
+// Toggle sidebar function
+const toggleSidebar = () => {
+  sidebarCollapsed.value = !sidebarCollapsed.value;
+};
+
+// Check window width and set sidebar state
+const checkWindowSize = () => {
+  if (window.innerWidth <= 576) {
+    sidebarCollapsed.value = true;
   }
-}
+};
+
+// Add resize listener
+const handleResize = () => {
+  checkWindowSize();
+};
+
+// Provide the toggle function to be used by Navbar
+provide('toggleSidebar', toggleSidebar);
+
+onMounted(() => {
+  // Set initial sidebar state based on screen size
+  checkWindowSize();
+  
+  // Add resize event listener
+  window.addEventListener('resize', handleResize);
+  
+  // Force the router to navigate to the current route
+  // This ensures the view is properly rendered on initial load
+  const currentPath = route.path;
+  if (currentPath === '/') {
+    ionRouter.push('/business');
+  } else {
+    // Force a re-render by navigating to the same route
+    ionRouter.push(currentPath);
+  }
+});
+
+onBeforeUnmount(() => {
+  // Clean up resize event listener
+  window.removeEventListener('resize', handleResize);
+});
 </script>
 
 <style>
-/* Import Font Awesome */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
-
-/* CSS Variables */
 :root {
-  --primary-color: #3b82f6;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --bg-light: #f8fafc;
-  --bg-white: #ffffff;
-  --border-color: #e2e8f0;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --header-height: 64px;
   --sidebar-width: 250px;
-  --sidebar-collapsed-width: 70px;
+  --sidebar-width-collapsed: 70px;
+  --sidebar-width-mobile: 200px;
+  --navbar-height: 56px;
 }
 
-/* Global styles */
-* {
+/* Remove any default margins and paddings */
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: var(--text-primary);
-  background-color: var(--bg-light);
-  line-height: 1.5;
+ion-app {
+  --ion-safe-area-left: 0;
+  --ion-safe-area-right: 0;
 }
 
-.app-container {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-}
-
-.main-content {
-  flex: 1;
+/* Main container */
+.main-container {
+  position: relative;
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  margin-left: var(--sidebar-width);
-  transition: margin-left 0.3s ease;
-  width: calc(100% - var(--sidebar-width));
+  transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
-.main-content.sidebar-collapsed {
-  margin-left: var(--sidebar-collapsed-width);
-  width: calc(100% - var(--sidebar-collapsed-width));
+/* Main container when sidebar is collapsed */
+.main-container.sidebar-collapsed {
+  margin-left: var(--sidebar-width-collapsed);
+  width: calc(100% - var(--sidebar-width-collapsed));
 }
 
-.content-area {
+/* Main content */
+.main-content {
+  padding-top: calc(var(--navbar-height) + 16px);
+  padding-right: 16px;
+  padding-bottom: 16px;
+  padding-left: 16px;
   flex: 1;
-  overflow-y: auto;
-  background-color: var(--bg-light);
 }
 
-/* Responsive styles */
-@media (max-width: 767px) {
-  .main-content {
-    margin-left: 0;
-    width: 100%;
+@media (max-width: 768px) {
+  .main-container {
+    margin-left: var(--sidebar-width-mobile);
+    width: calc(100% - var(--sidebar-width-mobile));
   }
   
-  .main-content.sidebar-collapsed {
-    margin-left: 0;
-    width: 100%;
+  .main-container.sidebar-collapsed {
+    margin-left: var(--sidebar-width-collapsed);
+    width: calc(100% - var(--sidebar-width-collapsed));
+  }
+}
+
+/* For mobile responsive design - keep sidebar visible */
+@media (max-width: 576px) {
+  ion-menu {
+    --width: var(--sidebar-width-mobile);
+    --min-width: var(--sidebar-width-mobile);
   }
   
-  .sidebar-overlay {
-    display: block;
+  .main-container {
+    margin-left: var(--sidebar-width-mobile);
+    width: calc(100% - var(--sidebar-width-mobile));
   }
-}
-
-/* Override Ionic default styles */
-ion-content {
-  --background: var(--bg-light);
-}
-
-/* Override default button styles */
-button {
-  cursor: pointer;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-.sidebar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 95;
-  display: none;
+  
+  .main-container.sidebar-collapsed {
+    margin-left: var(--sidebar-width-collapsed);
+    width: calc(100% - var(--sidebar-width-collapsed));
+  }
 }
 </style>

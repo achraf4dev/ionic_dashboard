@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router';
 
 import { IonicVue } from '@ionic/vue';
+import VueApexCharts from 'vue3-apexcharts';
+import VChart from 'vue-echarts';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -34,39 +36,12 @@ import '@ionic/vue/css/palettes/dark.system.css';
 /* Theme variables */
 import './theme/variables.css';
 
-// Import chart libraries
-import VueApexCharts from 'vue3-apexcharts';
-import { Chart, registerables } from 'chart.js';
-import * as echarts from 'echarts/core';
-import { CanvasRenderer } from 'echarts/renderers';
-import { 
-  BarChart, LineChart, PieChart, ScatterChart, 
-  GaugeChart, RadarChart, HeatmapChart 
-} from 'echarts/charts';
-import {
-  TitleComponent, TooltipComponent, GridComponent, LegendComponent,
-  DatasetComponent, ToolboxComponent, DataZoomComponent,
-  VisualMapComponent, TimelineComponent, GraphicComponent,
-  MarkLineComponent, MarkPointComponent
-} from 'echarts/components';
-
-// Register Chart.js components
-Chart.register(...registerables);
-
-// Register ECharts components
-echarts.use([
-  CanvasRenderer,
-  BarChart, LineChart, PieChart, ScatterChart, GaugeChart, RadarChart, HeatmapChart,
-  TitleComponent, TooltipComponent, GridComponent, LegendComponent,
-  DatasetComponent, ToolboxComponent, DataZoomComponent,
-  VisualMapComponent, TimelineComponent, GraphicComponent,
-  MarkLineComponent, MarkPointComponent
-]);
-
 const app = createApp(App)
   .use(IonicVue)
   .use(router)
   .use(VueApexCharts);
+
+app.component('v-chart', VChart);
 
 router.isReady().then(() => {
   app.mount('#app');

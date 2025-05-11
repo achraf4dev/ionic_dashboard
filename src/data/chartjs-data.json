@@ -1,0 +1,76 @@
+{
+  "pie": {
+    "labels": ["Marketing", "Sales", "Development", "Customer Support", "Operations"],
+    "datasets": [
+      {
+        "backgroundColor": ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
+        "data": [300, 500, 200, 150, 100]
+      }
+    ]
+  },
+  "doughnut": {
+    "labels": ["Online", "Offline", "Maintenance"],
+    "datasets": [
+      {
+        "backgroundColor": ["#4CAF50", "#F44336", "#FFC107"],
+        "data": [200, 15, 40]
+      }
+    ]
+  },
+  "scatter": {
+    "datasets": [
+      {
+        "label": "Marketing Campaign Alpha",
+        "borderColor": "#FF6384",
+        "backgroundColor": "rgba(255, 99, 132, 0.2)",
+        "data": [
+          { "x": 5, "y": 50 },
+          { "x": 10, "y": 120 },
+          { "x": 15, "y": 250 },
+          { "x": 20, "y": 400 },
+          { "x": 25, "y": 600 }
+        ]
+      },
+      {
+        "label": "Marketing Campaign Beta",
+        "borderColor": "#36A2EB",
+        "backgroundColor": "rgba(54, 162, 235, 0.2)",
+        "data": [
+          { "x": 7, "y": 60 },
+          { "x": 12, "y": 100 },
+          { "x": 17, "y": 180 },
+          { "x": 22, "y": 280 },
+          { "x": 27, "y": 450 }
+        ]
+      }
+    ]
+  },
+  "bubble": {
+    "datasets": [
+      {
+        "label": "Resource A",
+        "backgroundColor": "rgba(255, 99, 132, 0.2)",
+        "borderColor": "#FF6384",
+        "data": [
+          { "x": 10, "y": 20, "r": 5 },
+          { "x": 15, "y": 10, "r": 10 },
+          { "x": 20, "y": 30, "r": 15 },
+          { "x": 25, "y": 15, "r": 8 },
+          { "x": 30, "y": 25, "r": 12 }
+        ]
+      },
+      {
+        "label": "Resource B",
+        "backgroundColor": "rgba(54, 162, 235, 0.2)",
+        "borderColor": "#36A2EB",
+        "data": [
+          { "x": 12, "y": 25, "r": 7 },
+          { "x": 18, "y": 18, "r": 9 },
+          { "x": 22, "y": 35, "r": 12 },
+          { "x": 28, "y": 28, "r": 5 },
+          { "x": 33, "y": 20, "r": 14 }
+        ]
+      }
+    ]
+  }
+} 

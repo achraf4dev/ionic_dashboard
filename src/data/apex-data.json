@@ -1,0 +1,51 @@
+{
+  "line": {
+    "series": [
+      {
+        "name": "Revenue",
+        "data": [31, 40, 28, 51, 42, 109, 100, 120, 80, 95, 110, 130]
+      },
+      {
+        "name": "Profit",
+        "data": [11, 32, 45, 32, 34, 52, 41, 55, 49, 62, 69, 91]
+      }
+    ],
+    "categories": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  },
+  "donut": {
+    "series": [44, 55, 13, 33],
+    "labels": ["Product A", "Product B", "Product C", "Product D"]
+  },
+  "heatmap": {
+    "series": [
+      {
+        "name": "Mon",
+        "data": [54, 42, 109, 100, 120, 27, 32]
+      },
+      {
+        "name": "Tue",
+        "data": [41, 55, 72, 93, 37, 42, 49]
+      },
+      {
+        "name": "Wed",
+        "data": [62, 69, 85, 101, 98, 52, 58]
+      },
+      {
+        "name": "Thu",
+        "data": [25, 29, 31, 42, 55, 64, 52]
+      },
+      {
+        "name": "Fri",
+        "data": [31, 45, 55, 29, 45, 20, 34]
+      },
+      {
+        "name": "Sat",
+        "data": [53, 42, 31, 39, 17, 27, 38]
+      },
+      {
+        "name": "Sun",
+        "data": [56, 47, 29, 36, 21, 43, 57]
+      }
+    ]
+  }
+} 
