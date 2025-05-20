@@ -2,17 +2,15 @@
   <ion-card class="stats-card" :class="cardBackgroundClass">
     <ion-card-header>
       <ion-card-subtitle v-if="subtitle">{{ subtitle }}</ion-card-subtitle>
-      <div class="title-trend-container">
-        <ion-card-title>{{ title }}</ion-card-title>
-        <div class="stats-trend" :class="trendClass">
-          <ion-icon :icon="trendIcon"></ion-icon>
-          <span>{{ trend }}%</span>
-        </div>
-      </div>
+      <ion-card-title>{{ title }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <div class="stats-value-container">
         <div class="stats-value">{{ value }}</div>
+        <div class="stats-trend" :class="trendClass">
+          <ion-icon :icon="trendIcon"></ion-icon>
+          <span>{{ trend }}%</span>
+        </div>
       </div>
     </ion-card-content>
     <div class="icon-container" :style="{ backgroundColor: iconBgColor }">
@@ -132,8 +130,9 @@ ion-card-subtitle {
 
 .stats-value-container {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-start;
+  gap: 8px;
   margin-bottom: 0;
 }
 
@@ -147,16 +146,17 @@ ion-card-subtitle {
 .stats-trend {
   display: flex;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  gap: 3px;
-  padding: 3px 7px;
+  gap: 2px;
+  padding: 2px 6px;
   border-radius: 16px;
+  margin-top: 4px;
 }
 
 .stats-trend ion-icon {
-  font-size: 1.1em;
-  margin-right: 2px;
+  font-size: 0.9em;
+  margin-right: 1px;
 }
 
 .positive {

@@ -30,7 +30,7 @@ const radarData = ref(JSON.parse(JSON.stringify(echartsData.radar)));
 
 const option = shallowRef({
   title: {
-    text: 'System Health Radar',
+    text: 'Radar de Estado del Sistema',
     left: 'left',
     textStyle: {
       fontSize: 14,
@@ -39,7 +39,7 @@ const option = shallowRef({
   },
   tooltip: {},
   legend: {
-    data: ['Application 1', 'Application 2'],
+    data: ['Aplicación 1', 'Aplicación 2'],
     bottom: 0
   },
   radar: {

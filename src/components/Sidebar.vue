@@ -1,13 +1,13 @@
 <template>
   <div class="persistent-sidebar" :class="{ 'collapsed': collapsed }">
     <div class="logo-container">
-      <h2 v-if="!collapsed">Dashboard</h2>
-      <div v-else class="logo-icon">D</div>
+      <h2 v-if="!collapsed">Panel de Control</h2>
+      <div v-else class="logo-icon">P</div>
     </div>
     
     <div class="sidebar-content">
       <div class="nav-section">
-        <div class="section-title" v-if="!collapsed">Navigation</div>
+        <div class="section-title" v-if="!collapsed">Navegación</div>
         
         <router-link 
           v-for="(item, index) in appPages" 
@@ -50,12 +50,12 @@ const none = "none";
 
 const appPages = ref([
   {
-    title: 'Business',
+    title: 'Negocio',
     url: '/business',
     icon: analyticsOutline
   },
   {
-    title: 'Technique',
+    title: 'Técnica',
     url: '/technique',
     icon: desktopOutline
   },

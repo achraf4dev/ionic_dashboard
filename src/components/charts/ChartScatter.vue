@@ -33,7 +33,7 @@ const chartOptions = {
     },
     title: {
       display: true,
-      text: 'Business Growth Metrics',
+      text: 'Métricas de Crecimiento del Negocio',
       font: {
         size: 14
       }
@@ -43,13 +43,13 @@ const chartOptions = {
     x: {
       title: {
         display: true,
-        text: 'Marketing Spend ($K)'
+        text: 'Gasto en Marketing (€)'
       }
     },
     y: {
       title: {
         display: true,
-        text: 'New Customers Acquired'
+        text: 'Nuevos Clientes Adquiridos'
       }
     }
   }

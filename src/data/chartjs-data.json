@@ -1,6 +1,6 @@
 {
   "pie": {
-    "labels": ["Marketing", "Sales", "Development", "Customer Support", "Operations"],
+    "labels": ["Marketing", "Ventas", "Desarrollo", "Atención al Cliente", "Operaciones"],
     "datasets": [
       {
         "backgroundColor": ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
@@ -9,7 +9,7 @@
     ]
   },
   "doughnut": {
-    "labels": ["Online", "Offline", "Maintenance"],
+    "labels": ["En Línea", "Fuera de Línea", "Mantenimiento"],
     "datasets": [
       {
         "backgroundColor": ["#4CAF50", "#F44336", "#FFC107"],
@@ -20,7 +20,7 @@
   "scatter": {
     "datasets": [
       {
-        "label": "Marketing Campaign Alpha",
+        "label": "Campaña de Marketing Alfa",
         "borderColor": "#FF6384",
         "backgroundColor": "rgba(255, 99, 132, 0.2)",
         "data": [
@@ -32,7 +32,7 @@
         ]
       },
       {
-        "label": "Marketing Campaign Beta",
+        "label": "Campaña de Marketing Beta",
         "borderColor": "#36A2EB",
         "backgroundColor": "rgba(54, 162, 235, 0.2)",
         "data": [
@@ -48,7 +48,7 @@
   "bubble": {
     "datasets": [
       {
-        "label": "Resource A",
+        "label": "Recurso A",
         "backgroundColor": "rgba(255, 99, 132, 0.2)",
         "borderColor": "#FF6384",
         "data": [
@@ -60,7 +60,7 @@
         ]
       },
       {
-        "label": "Resource B",
+        "label": "Recurso B",
         "backgroundColor": "rgba(54, 162, 235, 0.2)",
         "borderColor": "#36A2EB",
         "data": [

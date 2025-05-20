@@ -34,7 +34,7 @@ const chartOptions = {
     },
     title: {
       display: true,
-      text: 'Department Distribution',
+      text: 'Distribución por Departamento',
       font: {
         size: 14
       }

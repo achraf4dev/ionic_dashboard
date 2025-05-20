@@ -30,7 +30,7 @@ use([
 
 const option = shallowRef({
   title: {
-    text: 'Server Resource Usage',
+    text: 'Uso de Recursos del Servidor',
     left: 'left',
     textStyle: {
       fontSize: 14,
@@ -44,7 +44,7 @@ const option = shallowRef({
     }
   },
   legend: {
-    data: ['CPU Usage', 'Memory Usage'],
+    data: ['Uso de CPU', 'Uso de Memoria'],
     top: 'bottom'
   },
   grid: {

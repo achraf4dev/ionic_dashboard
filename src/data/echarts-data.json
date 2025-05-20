@@ -2,16 +2,16 @@
   "bar": {
     "xAxis": {
       "type": "category",
-      "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+      "data": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
     },
     "series": [
       {
-        "name": "CPU Usage",
+        "name": "Uso de CPU",
         "data": [120, 200, 150, 80, 70, 110, 130],
         "type": "bar"
       },
       {
-        "name": "Memory Usage",
+        "name": "Uso de Memoria",
         "data": [90, 102, 140, 160, 150, 130, 100],
         "type": "bar"
       }
@@ -20,10 +20,10 @@
   "radar": {
     "indicator": [
       { "name": "CPU", "max": 100 },
-      { "name": "Memory", "max": 100 },
-      { "name": "Disk", "max": 100 },
-      { "name": "Network", "max": 100 },
-      { "name": "Throughput", "max": 100 }
+      { "name": "Memoria", "max": 100 },
+      { "name": "Disco", "max": 100 },
+      { "name": "Red", "max": 100 },
+      { "name": "Rendimiento", "max": 100 }
     ],
     "series": [
       {
@@ -31,11 +31,11 @@
         "data": [
           {
             "value": [85, 90, 75, 95, 70],
-            "name": "Application 1"
+            "name": "Aplicación 1"
           },
           {
             "value": [65, 55, 80, 62, 85],
-            "name": "Application 2"
+            "name": "Aplicación 2"
           }
         ]
       }

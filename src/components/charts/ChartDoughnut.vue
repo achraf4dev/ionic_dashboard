@@ -35,7 +35,7 @@ const chartOptions = {
     },
     title: {
       display: true,
-      text: 'Server Status',
+      text: 'Estado del Servidor',
       font: {
         size: 14
       }

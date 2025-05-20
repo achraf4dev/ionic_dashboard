@@ -30,7 +30,7 @@ use([
 
 const option = shallowRef({
   title: {
-    text: 'Resource Usage Patterns',
+    text: 'Patrones de Uso de Recursos',
     left: 'left',
     textStyle: {
       fontSize: 14,
@@ -45,11 +45,11 @@ const option = shallowRef({
     formatter: function (params: any) {
       const param = params[0];
       return [
-        'Date: ' + param.name + '<br/>',
-        'Open: ' + param.data[0] + '<br/>',
-        'Close: ' + param.data[1] + '<br/>',
-        'Low: ' + param.data[2] + '<br/>',
-        'High: ' + param.data[3] + '<br/>'
+        'Fecha: ' + param.name + '<br/>',
+        'Apertura: ' + param.data[0] + '<br/>',
+        'Cierre: ' + param.data[1] + '<br/>',
+        'Mínimo: ' + param.data[2] + '<br/>',
+        'Máximo: ' + param.data[3] + '<br/>'
       ].join('');
     }
   },
@@ -88,7 +88,7 @@ const option = shallowRef({
   series: [
     {
       type: 'candlestick',
-      name: 'Resource Usage',
+      name: 'Uso de Recursos',
       data: echartsData.candle.series[0].data,
       itemStyle: {
         color: '#0063F7',

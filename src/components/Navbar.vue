@@ -4,7 +4,7 @@
       <div class="navbar-left">
         <ion-icon :icon="menuOutline" class="menu-toggle" @click="toggleSidebar"></ion-icon>
         <ion-icon :icon="homeOutline" class="title-icon"></ion-icon>
-        <h2 class="page-title">Dashboard</h2>
+        <h2 class="page-title">Panel de Control</h2>
       </div>
       
       <div class="navbar-right">
@@ -18,7 +18,7 @@
         <div class="divider"></div>
         <div class="nav-action-item user-profile">
           <div class="avatar">A</div>
-          <span>Admin</span>
+          <span>Administrador</span>
           <ion-icon :icon="chevronDownOutline" class="dropdown-icon"></ion-icon>
         </div>
       </div>

@@ -2,15 +2,15 @@
   <div class="business-view">
     <div class="stats-container">
       <StatsCard 
-        title="Total Revenue"
-        value="$89,452"
+        title="Ingresos Totales"
+        value="8 452€"
         :trend="8.2"
         :icon="cashOutline"
         iconColor="#ffffff"
         iconBgColor="var(--ion-color-success)"
       />
       <StatsCard 
-        title="New Customers"
+        title="Nuevos Clientes"
         value="385"
         :trend="12.5"
         :icon="peopleOutline"
@@ -18,15 +18,15 @@
         iconBgColor="var(--ion-color-primary)"
       />
       <StatsCard 
-        title="Total Orders"
-        value="2,485"
+        title="Pedidos Totales"
+        value="2 485"
         :trend="-3.8"
         :icon="cartOutline"
         iconColor="#ffffff"
         iconBgColor="var(--ion-color-tertiary)"
       />
       <StatsCard 
-        title="Conversion Rate"
+        title="Tasa de Conversión"
         value="12.8%"
         :trend="5.4"
         :icon="trendingUpOutline"
@@ -37,14 +37,14 @@
 
     <div class="charts-container">
       <div class="chart-card first-row">
-        <h2>Revenue Trends</h2>
+        <h2>Tendencias de Ingresos</h2>
         <ApexLine />
       </div>
       <div class="chart-card first-row">
         <ApexHeatmap />
       </div>
       <div class="chart-card second-row">
-        <h2>Revenue Distribution</h2>
+        <h2>Distribución de Ingresos</h2>
         <ApexDonut />
       </div>
       <div class="chart-card second-row">

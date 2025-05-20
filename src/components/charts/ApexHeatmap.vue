@@ -28,7 +28,7 @@ const chartOptions = ref({
   },
   colors: ["#0063F7"],
   title: {
-    text: 'Customer Activity Heatmap',
+    text: 'Mapa de Calor de Actividad del Cliente',
     align: 'left',
     style: {
       fontSize: '14px',
@@ -45,25 +45,25 @@ const chartOptions = ref({
           {
             from: 0,
             to: 30,
-            name: 'Low',
+            name: 'Bajo',
             color: '#B4E0A7'
           },
           {
             from: 31,
             to: 60,
-            name: 'Medium',
+            name: 'Medio',
             color: '#5CCB58'
           },
           {
             from: 61,
             to: 100,
-            name: 'High',
+            name: 'Alto',
             color: '#1AA053'
           },
           {
             from: 101,
             to: 150,
-            name: 'Very High',
+            name: 'Muy Alto',
             color: '#0A6634'
           }
         ]

@@ -33,7 +33,7 @@ const chartOptions = {
     },
     title: {
       display: true,
-      text: 'Resource Allocation',
+      text: 'Asignación de Recursos',
       font: {
         size: 14
       }
@@ -45,7 +45,7 @@ const chartOptions = {
           const x = context.parsed.x;
           const y = context.parsed.y;
           const r = context.raw.r;
-          return `${label}: (${x}, ${y}, Size: ${r})`;
+          return `${label}: (${x}, ${y}, Tamaño: ${r})`;
         }
       }
     }
@@ -54,13 +54,13 @@ const chartOptions = {
     x: {
       title: {
         display: true,
-        text: 'Utilization (%)'
+        text: 'Utilización (%)'
       }
     },
     y: {
       title: {
         display: true,
-        text: 'Efficiency (%)'
+        text: 'Eficiencia (%)'
       }
     }
   }

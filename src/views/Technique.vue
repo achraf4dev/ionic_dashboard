@@ -2,7 +2,7 @@
   <div class="technique-view">
     <div class="stats-container">
       <StatsCard 
-        title="Server Uptime"
+        title="Tiempo Activo del Servidor"
         value="99.92%"
         :trend="0.4"
         :icon="serverOutline"
@@ -10,7 +10,7 @@
         iconBgColor="var(--ion-color-success)"
       />
       <StatsCard 
-        title="API Requests"
+        title="Solicitudes API"
         value="1.28M"
         :trend="15.7"
         :icon="codeSlashOutline"
@@ -18,7 +18,7 @@
         iconBgColor="var(--ion-color-primary)"
       />
       <StatsCard 
-        title="Response Time"
+        title="Tiempo de Respuesta"
         value="234ms"
         :trend="-12.3"
         :icon="timeOutline"
@@ -26,7 +26,7 @@
         iconBgColor="var(--ion-color-tertiary)"
       />
       <StatsCard 
-        title="Error Rate"
+        title="Tasa de Error"
         value="0.08%"
         :trend="-5.2"
         :icon="alertCircleOutline"
